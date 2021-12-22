@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>com.axelcurmi</groupId>
-	<artifactId>log4j-vuln</artifactId>
+	<artifactId>log4shell-vulnapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Log4j Vulnerable Application</name>
 	<description>Log4j Vulnerable Application for demonstration</description>

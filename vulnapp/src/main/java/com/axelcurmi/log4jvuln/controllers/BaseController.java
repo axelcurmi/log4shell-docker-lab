@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class BaseController {
-    private static final Logger logger = LogManager.getLogger("HelloWorld");
+    private static final Logger logger = LogManager.getLogger(BaseController.class);
 
     @GetMapping("/")
     public ModelAndView index(@RequestParam(required = false) String error) {
